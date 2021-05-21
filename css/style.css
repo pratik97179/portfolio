@@ -62,6 +62,10 @@ nav ul li {
   cursor: pointer;
 }
 
+.contactDetails {
+  font-size: 0.8rem;
+}
+
 .container {
   max-width: 600px;
   margin: auto;
