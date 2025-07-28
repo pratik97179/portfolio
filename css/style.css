@@ -4,16 +4,19 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  cursor: default;
 }
 
 :root {
   --text-color: #00aa00;
+  --bg-color: #333;
+  --white: #ccc;
 }
 
 body {
-  font-family: "Roboto Mono", sans-serif;
-  background-color: #333;
-  color: #ccc;
+  font-family: "Roboto Mono", monospace;
+  background-color: var(--bg-color);
+  color: var(--white);
   font-size: 18px;
   line-height: 1.6;
 }
@@ -39,7 +42,12 @@ ul {
 
 a {
   color: var(--text-color);
-  text-decoration: none;
+  text-decoration: underline dotted var(--text-color);
+  cursor: pointer;
+}
+
+.grey {
+  color: #7d7d7d;
 }
 
 p {
@@ -48,13 +56,17 @@ p {
 }
 
 nav {
-  width: 30%;
+  width: 80%;
 }
 
 nav ul {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.nav-links li {
+  margin-right: 20px;
 }
 
 nav ul li {
@@ -68,12 +80,13 @@ nav ul li {
 
 .container {
   max-width: 600px;
-  margin: auto;
-  height: 70vh;
+  margin-top: 25vh;
+  margin-left: 43vw;
+  height: 75vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: start;
 }
 
 .wb-body {
@@ -99,4 +112,114 @@ nav ul li {
   50% {
     color: var(--text-color);
   }
+}
+
+.cd {
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.black {
+  color: #a8a7a7;
+}
+
+pre {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.8rem;
+  white-space: pre;
+  color: var(--white);
+  margin-top: 1rem;
+}
+
+.green {
+  color: var(--text-color);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.green:hover {
+  text-decoration: underline dotted var(--text-color);
+}
+
+.highlight {
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.tip:hover::after {
+  opacity: 1;
+}
+
+.tip {
+  position: relative;
+  cursor: pointer;
+  text-decoration: underline dotted var(--text-color);
+}
+
+.tip::after {
+  content: attr(data-tip);
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #eee;
+  padding: 6px 12px;
+  font-size: 0.65rem;
+  font-family: monospace;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 9999;
+  transition: opacity 0.2s ease-in-out;
+}
+
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  animation: splash-fade 2.5s cubic-bezier(0.77, 0, 0.175, 1) forwards; /* 🔁 Custom slow cubic-in-out */
+  pointer-events: none;
+}
+
+
+/* Content centered */
+.splash-content {
+  display: flex;
+  align-items: center;
+  font-family: monospace;
+  font-size: 1.1rem;
+}
+
+/* Terminal loader */
+.terminal-loader {
+  display: inline-block;
+  width: 10px;
+  height: 16px;
+  background-color: var(--text-color);
+  margin-left: 8px;
+  animation: blink-block 0.5s steps(2, start) infinite;
+}
+
+/* Fade in, hold, fade out */
+@keyframes splash-fade {
+  0%   { opacity: 0; }
+  25%  { opacity: 1; }
+  75%  { opacity: 1; }
+  100% { opacity: 0; display: none; }
+}
+
+/* Blocky blink animation like VS Code */
+@keyframes blink-block {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.2; }
 }

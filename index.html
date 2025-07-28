@@ -9,31 +9,40 @@
     <title>portfolio.exe</title>
   </head>
   <body>
+    <div id="splash-screen">
+  <div class="splash-content">
+    <span class="splash-text">~ pratik@dev.sh</span>
+    <span class="terminal-loader"></span>
+  </div>
+</div>
+
     <div class="container">
+      <div class="content1">
       <nav>
-        <ul>
+        <ul class="nav-links">
           <li id="about">/about</li>
           <li id="contact">/contact</li>
+          <li id="work">/work</li>
         </ul>
       </nav>
 
       <main>
         <h1>pratik:$<span class="cursor"> _</span></h1>
-        <h3>Find me online:</h3>
+        <h3>Find <span class="black">me</span> online:</h3>
         <ul>
           <li>
             <a href="https://github.com/pratik97179" target="_blank">GitHub</a>
           </li>
           <li>
             <a
-              href="https://www.linkedin.com/in/pratik-nath-tiwari-25262b17b/"
+              href="https://www.linkedin.com/in/pratiknathtiwari/"
               target="_blank"
               >LinkedIn</a
             >
           </li>
           <li>
-            <a href="https://www.instagram.com/musfr.x/" target="_blank"
-              >Instagram</a
+            <a href="https://medium.com/@prateek.infinite.370" target="_blank"
+              >Medium</a
             >
           </li>
         </ul>
@@ -41,34 +50,50 @@
     </div>
 
     <div class="hidden">
-      <div id="about-content">
-        <h2>about-me:$<span class="cursor"> _</span></h2>
-        <p>
-          My name is Pratik Nath Tiwari, a final year undergraduate from MAIT,
-          Rohini.
-        </p>
-        <p>
-          Some of the programming languages that I am familiar with include C,
-          C++, Java, HTML, CSS, JavaScript, ReactJs.
-        </p>
-        <p>
-          Apart from this, I am a Mathematical nerd with a keen interest in
-          Advanced Calculus.
-        </p>
-        <p>
-          My hobbies include singing, playing guitar/ukulele, photography and
-          writing poetry.
-        </p>
-      </div>
+<div id="about-content">
+  <h2>about-me:$<span class="cursor"> _</span></h2>
+        <p><span class="cd">$ cd</span> /about </br> <span class="cd">$ ls</span></p>
+
+  <p>
+    I'm a <span class="highlight">software developer</span> with a strong command over 
+    <span class="highlight tip" data-tip="Flutter, React, TypeScript, JavaScript">frontend frameworks</span>, specializing in 
+    <span class="highlight tip" data-tip="Token-based design systems, custom rendering, performance profiling">high-performance UI systems</span> for mobile and web platforms.
+  </p>
+  <p>
+    My work spans across <span class="highlight tip" data-tip="Brokerage, FinTech, Petcare, Event tech">diverse domains</span>, where I've led 
+    <span class="highlight">complex feature development</span>, 
+    <span class="highlight">SDK integrations</span>, and 
+    <span class="highlight">real-time systems</span> at scale.
+  </p>
+  <p>
+    I love building <span class="highlight tip" data-tip="Modular, scalable, and maintainable architecture">clean architectures</span>, with a strong focus on 
+    <span class="highlight">developer experience</span> and 
+    <span class="highlight">design tokenization</span> to ensure pixel-perfect precision.
+  </p>
+  <p>
+    Outside of code, I enjoy <span class="highlight">mathematics</span>, 
+    <span class="highlight">poetry</span>, and 
+    <span class="highlight">music</span> — which I believe sharpen my design instincts and problem-solving skills.
+  </p>
+</div>
+
 
       <div id="contact-content">
         <h2>contact-me:$<span class="cursor"> _</span></h2>
+        <p><span class="cd">$ cd</span> /contact </br> <span class="cd">$ ls</span></p>
         <p>You can contact me at the email and phone number given below</p>
         <ul class="contactDetails">
-          <li>Email: prateek.infinite.370@gmail.com</li>
-          <li>Phone: +91-9717950608</li>
+          <li><span class="grey">Email</span>: prateek.infinite.370@gmail.com</li>
+          <li><span class="grey">Phone</span>: +91-9717950608</li>
         </ul>
       </div>
+      
+      <div id="work-content">
+        <h2>work:$<span class="cursor"> _</span></h2>
+        <pre id="work-terminal"></pre>
+      </div>
+      </div>
+      <p>I created <a class="green" href="http://pratik-tiwari.netlify.app/">this</a> website</p>
     </div>
 
     <script src="js/winbox.bundle.js"></script>
