@@ -1,44 +1,46 @@
+// DOM Element References
 const about = document.querySelector("#about");
 const contact = document.querySelector("#contact");
 const work = document.querySelector("#work");
 const aboutContent = document.querySelector("#about-content");
 const contactContent = document.querySelector("#contact-content");
 
+// WinBox Instances
 let aboutBox = null;
 let contactBox = null;
 let workBox = null;
 
-const workContent = document.createElement("div");
-workContent.id = "work-content";
-workContent.innerHTML = `<h2>work:$<span class="cursor"> _</span></h2><pre id="work-terminal"></pre>`;
+// Create Work Content
+const workContent = document.querySelector("#work-content");
 document.querySelector(".hidden").appendChild(workContent);
 
 const workTerminal = workContent.querySelector("#work-terminal");
 
-const dotLoader = document.querySelector('.dot-loader');
+// Splash Screen Loader
+const dotLoader = document.querySelector(".dot-loader");
 let dotCount = 0;
 
 const interval = setInterval(() => {
-  dotCount = (dotCount + 1) % 4; // 0 to 3
-  dotLoader.textContent = '.'.repeat(dotCount);
+    dotCount = (dotCount + 1) % 4;
+    dotLoader.textContent = ".".repeat(dotCount);
 }, 400);
 
-// Stop loader after splash fades
 setTimeout(() => {
-  document.getElementById('splash-screen').style.display = 'none';
-  clearInterval(interval);
-}, 2500); // Match splash-fade duration
+    document.getElementById("splash-screen").style.opacity = "0";
+    setTimeout(() => {
+        document.getElementById("splash-screen").style.display = "none";
+    }, 500);
+    clearInterval(interval);
+}, 2000);
 
-
-
-
+// Experience Data
 const experiences = [
     {
         id: "5paisa",
         company: "5paisa Capital Ltd.",
         role: "Software Developer",
         duration: "Nov 2024 - July 2025 · Bangalore, India",
-        description: "Retail trading app for Stocks, F&O and MF.",
+        description: "Retail trading app for stocks, F&O, and mutual funds.",
         visit: '<a href="https://www.5paisa.com" target="_blank">Visit</a>',
     },
     {
@@ -46,7 +48,7 @@ const experiences = [
         company: "Antino Labs",
         role: "Senior Software Developer",
         duration: "Jun 2024 - Oct 2024 · Bangalore, India",
-        description: "Technology consulting & digital development.",
+        description: "Full-cycle tech consulting and product engineering.",
         visit: '<a href="https://www.antino.com/" target="_blank">Visit</a>',
     },
     {
@@ -54,26 +56,29 @@ const experiences = [
         company: "Tech Alchemy",
         role: "SDE-1",
         duration: "Jul 2021 - May 2024 · Remote, India",
-        description: "Full-stack mobile and web product development.",
+        description: "Custom mobile/web product builds with global reach.",
         visit: '<a href="https://techalchemy.com/" target="_blank">Visit</a>',
     },
 ];
 
+// Expand/Collapse States
 let openStates = {};
 experiences.forEach((exp) => (openStates[exp.id] = false));
 
+// Render Work Terminal UI
 function renderWorkTerminal() {
-    let output = `<span class="cd">$ cd </span><span>/work</span>\n<span class="cd">$ ls</span>\n\n`;
+    let output =
+        '<p><span class="cd">$ cd </span><span>/work</span>\n<span class="cd">$ ls</span></p>';
 
     experiences.forEach((exp) => {
         const symbol = openStates[exp.id] ? "-" : "+";
-        output += `<span class="green" data-id="${exp.id}">${symbol} ${exp.company}</span>\n`;
+        output += `<p class="p2"><span class="green" data-id="${exp.id}">${symbol} ${exp.company}</span>\n</p>`;
 
         if (openStates[exp.id]) {
-            output += `   ├── <span class="grey">Role</span>: ${exp.role}\n`;
+            output += `<p class="p2">   ├── <span class="grey">Role</span>: ${exp.role}\n`;
             output += `   ├── <span class="grey">Duration</span>: ${exp.duration}\n`;
-            output += `   └── <span class="grey">Description</span>: ${exp.description}\n`;
-            output += `   └── ${exp.visit}\n\n`;
+            output += `   ├── <span class="grey">About</span>: ${exp.description}\n`;
+            output += `   └── ${exp.visit}</p>`;
         }
     });
 
@@ -88,12 +93,12 @@ function renderWorkTerminal() {
     });
 }
 
+// WinBox Handlers
 about.addEventListener("click", () => {
     if (aboutBox && !aboutBox.closed) {
         aboutBox.focus();
         return;
     }
-
     aboutBox = new WinBox({
         title: "About Me",
         width: "500px",
@@ -109,7 +114,7 @@ about.addEventListener("click", () => {
         onblur() {
             this.setBackground("#777");
         },
-        onclose: function () {
+        onclose() {
             aboutBox = null;
         },
     });
@@ -133,7 +138,7 @@ contact.addEventListener("click", () => {
         onblur() {
             this.setBackground("#777");
         },
-        onclose: function () {
+        onclose() {
             contactBox = null;
         },
     });
@@ -157,46 +162,47 @@ work.addEventListener("click", () => {
         onblur() {
             this.setBackground("#777");
         },
-        onclose: function () {
+        onclose() {
             workBox = null;
         },
     });
     renderWorkTerminal();
 });
 
-const hoverName = document.querySelector('.hover-name');
-const hoverImg = document.querySelector('.hover-image');
+// Hover Image Animation (Head Section)
+const hoverName = document.querySelector(".hover-name");
+const hoverImg = document.querySelector(".hover-image");
 
-let mouseX = 0, mouseY = 0;
-let imgX = 0, imgY = 0;
+let mouseX = 0,
+    mouseY = 0;
+let imgX = 0,
+    imgY = 0;
 let isHovering = false;
 
 const animate = () => {
-  if (!isHovering) return;
-
-  // Easing: interpolate position (lerp)
-  imgX += (mouseX - imgX) * 0.15;  // lower = more lag
-  imgY += (mouseY - imgY) * 0.15;
-
-  hoverImg.style.transform = `translate(${imgX + 10}px, ${imgY - 80}px) scale(1)`;
-
-  requestAnimationFrame(animate);
+    if (!isHovering) return;
+    imgX += (mouseX - imgX) * 0.12;
+    imgY += (mouseY - imgY) * 0.12;
+    hoverImg.style.transform = `translate(${imgX + 10}px, ${
+        imgY - 80
+    }px) scale(1)`;
+    requestAnimationFrame(animate);
 };
 
-hoverName.addEventListener('mouseenter', () => {
-  isHovering = true;
-  hoverImg.style.opacity = '0.8';
-  animate();
+hoverName.addEventListener("mouseenter", () => {
+    isHovering = true;
+    hoverImg.style.opacity = "0.8";
+    animate();
 });
 
-hoverName.addEventListener('mousemove', (e) => {
-  const rect = hoverName.getBoundingClientRect();
-  mouseX = e.clientX - rect.left;
-  mouseY = e.clientY - rect.top;
+hoverName.addEventListener("mousemove", (e) => {
+    const rect = hoverName.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
 });
 
-hoverName.addEventListener('mouseleave', () => {
-  isHovering = false;
-  hoverImg.style.opacity = '0';
-  hoverImg.style.transform = 'translate(0, 0) scale(0.95)';
+hoverName.addEventListener("mouseleave", () => {
+    isHovering = false;
+    hoverImg.style.opacity = "0";
+    hoverImg.style.transform = "translate(0, 0) scale(0.95)";
 });
