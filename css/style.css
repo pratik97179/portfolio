@@ -19,7 +19,7 @@ body {
     font-family: "Roboto Mono", monospace;
     background-color: var(--bg-color);
     color: var(--white);
-    font-size: 18px;
+    font-size: 1rem;
     line-height: 1.6;
 }
 
@@ -60,9 +60,7 @@ p {
 
 /* ===================== Layout ===================== */
 .body-container {
-    max-width: 600px;
     margin-top: 25vh;
-    height: 75vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -123,7 +121,7 @@ nav ul li {
     width: auto;
     margin-left: 3vh;
     margin-bottom: 2vh;
-    margin-right: 57vh;
+    margin-right: 55vh;
 }
 
 .logo-separator {
@@ -277,4 +275,14 @@ nav ul li {
     flex-direction: column;
     height: 75vh;
     justify-content: space-between;
+}
+
+@media screen and (max-width: 500px) {
+  .logo {
+    display: none;
+  }
+
+  .body-container {
+    align-items: center;
+  }
 }
