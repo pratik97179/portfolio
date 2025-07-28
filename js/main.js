@@ -15,12 +15,21 @@ document.querySelector(".hidden").appendChild(workContent);
 
 const workTerminal = workContent.querySelector("#work-terminal");
 
-window.addEventListener('load', () => {
-  const splash = document.getElementById('splash-screen');
-  setTimeout(() => {
-    splash.style.display = 'none';
-  }, 2500); // match animation time
-});
+const dotLoader = document.querySelector('.dot-loader');
+let dotCount = 0;
+
+const interval = setInterval(() => {
+  dotCount = (dotCount + 1) % 4; // 0 to 3
+  dotLoader.textContent = '.'.repeat(dotCount);
+}, 400);
+
+// Stop loader after splash fades
+setTimeout(() => {
+  document.getElementById('splash-screen').style.display = 'none';
+  clearInterval(interval);
+}, 2500); // Match splash-fade duration
+
+
 
 
 const experiences = [
@@ -153,4 +162,41 @@ work.addEventListener("click", () => {
         },
     });
     renderWorkTerminal();
+});
+
+const hoverName = document.querySelector('.hover-name');
+const hoverImg = document.querySelector('.hover-image');
+
+let mouseX = 0, mouseY = 0;
+let imgX = 0, imgY = 0;
+let isHovering = false;
+
+const animate = () => {
+  if (!isHovering) return;
+
+  // Easing: interpolate position (lerp)
+  imgX += (mouseX - imgX) * 0.15;  // lower = more lag
+  imgY += (mouseY - imgY) * 0.15;
+
+  hoverImg.style.transform = `translate(${imgX + 10}px, ${imgY - 80}px) scale(1)`;
+
+  requestAnimationFrame(animate);
+};
+
+hoverName.addEventListener('mouseenter', () => {
+  isHovering = true;
+  hoverImg.style.opacity = '0.8';
+  animate();
+});
+
+hoverName.addEventListener('mousemove', (e) => {
+  const rect = hoverName.getBoundingClientRect();
+  mouseX = e.clientX - rect.left;
+  mouseY = e.clientY - rect.top;
+});
+
+hoverName.addEventListener('mouseleave', () => {
+  isHovering = false;
+  hoverImg.style.opacity = '0';
+  hoverImg.style.transform = 'translate(0, 0) scale(0.95)';
 });

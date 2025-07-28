@@ -183,21 +183,24 @@ pre {
   background-color: black;
   color: var(--text-color);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center;        /* Center vertically */
+  justify-content: flex-start; /* Align to left */
   z-index: 9999;
   opacity: 0;
-  animation: splash-fade 2.5s cubic-bezier(0.77, 0, 0.175, 1) forwards; /* 🔁 Custom slow cubic-in-out */
+  animation: splash-fade 2.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
   pointer-events: none;
+  padding-left: 43vw;         /* Adjust as needed */
 }
 
-
-/* Content centered */
 .splash-content {
-  display: flex;
-  align-items: center;
   font-family: monospace;
   font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+
+.splash-text {
+  margin-right: 6px;
 }
 
 /* Terminal loader */
@@ -222,4 +225,24 @@ pre {
 @keyframes blink-block {
   0%, 100% { opacity: 1; }
   50%      { opacity: 0.2; }
+}
+
+.hover-name {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.hover-image {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 20vh;
+  height: auto;
+  border-radius: 100px;
+  opacity: 0;
+  transform: translate(0, 0) scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  z-index: 1000;
 }
